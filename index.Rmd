@@ -1,0 +1,82 @@
+---
+title: "Horizon Island - Tops de armas GenU"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme: united
+
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(shiny)
+library(ggplot2)
+library(sf)
+library(DT)
+library(plotly)
+library(leaflet)
+library(dplyr)
+library(readxl)
+library(spData)
+library(stringi)
+library(colourpicker)
+```
+
+```{r, Lectura del archivo xls, message=FALSE, echo=FALSE, warning=FALSE}  
+topgs <-
+  read_excel("topgs.xls")
+topgs = subset(
+  topgs,
+  select = c(
+    "Nombre",
+    "Daño del arma",
+    "Habilidad Recomendada",
+    "Slots",
+    "Otros"
+  )
+)
+
+topls <-
+  read_excel("topls.xls")
+topls = subset(
+  topls,
+  select = c(
+    "Nombre",
+    "Daño del arma",
+    "Habilidad Recomendada",
+    "Slots",
+    "Otros"
+  )
+)
+```  
+
+# Gran Espada 
+
+Column {data-width=990}
+-----------------------------------------------------------------------
+
+### Top Gran Espada
+
+```{r tabla1, message=FALSE, echo=FALSE, warning=FALSE}
+topgs %>%
+  datatable(filter = 'bottom', options = list(
+    pageLength = 10,
+    language = list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json') 
+  ), colnames=c("Nombre", "Daño del arma", "Habilidad Recomendada", "Slots", "Otros"))
+```
+
+# Espada Larga 
+
+Column {data-width=990}
+-----------------------------------------------------------------------
+
+### Top Espada Larga
+
+```{r tabla2, message=FALSE, echo=FALSE, warning=FALSE}
+topls %>%
+  datatable(filter = 'bottom', options = list(
+    pageLength = 10,
+    language = list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json') 
+  ), colnames=c("Nombre", "Daño del arma", "Habilidad Recomendada", "Slots", "Otros"))
+``` 

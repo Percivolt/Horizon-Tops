@@ -49,6 +49,32 @@ topls = subset(
     "Otros"
   )
 )
+
+topdb <-
+  read_excel("topdb.xls")
+topdb = subset(
+  topdb,
+  select = c(
+    "Nombre",
+    "Daño del arma",
+    "Habilidad Recomendada",
+    "Slots",
+    "Otros"
+  )
+)
+
+topm <-
+  read_excel("topm.xls")
+topm = subset(
+  topm,
+  select = c(
+    "Nombre",
+    "Daño del arma",
+    "Habilidad Recomendada",
+    "Slots",
+    "Otros"
+  )
+)
 ```  
 
 # Gran Espada 
@@ -75,6 +101,36 @@ Column {data-width=990}
 
 ```{r tabla2, message=FALSE, echo=FALSE, warning=FALSE}
 topls %>%
+  datatable(filter = 'bottom', options = list(
+    pageLength = 10,
+    language = list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json') 
+  ), colnames=c("Nombre", "Daño del arma", "Habilidad Recomendada", "Slots", "Otros"))
+``` 
+
+# Espadas dobles
+
+Column {data-width=990}
+-----------------------------------------------------------------------
+
+### Top Espadas dobles
+
+```{r tabla3, message=FALSE, echo=FALSE, warning=FALSE}
+topdb %>%
+  datatable(filter = 'bottom', options = list(
+    pageLength = 10,
+    language = list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json') 
+  ), colnames=c("Nombre", "Daño del arma", "Habilidad Recomendada", "Slots", "Otros"))
+``` 
+
+# Martillos
+
+Column {data-width=990}
+-----------------------------------------------------------------------
+
+### Top Martillo
+
+```{r tabla4, message=FALSE, echo=FALSE, warning=FALSE}
+topm %>%
   datatable(filter = 'bottom', options = list(
     pageLength = 10,
     language = list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json') 
